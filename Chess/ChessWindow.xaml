@@ -1,0 +1,69 @@
+﻿<Fluent:RibbonWindow x:Class="Chess.ChessWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chess"
+        mc:Ignorable="d"
+        xmlns:usercontrol="clr-namespace:ChineseChess;assembly=ChineseChessControl"             
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:command="http://www.galasoft.ch/mvvmlight"
+        xmlns:Fluent="urn:fluent-ribbon"
+        xmlns:model="clr-namespace:Chess.Models"
+        BorderThickness="0"
+        ResizeMode="CanMinimize"
+        Height="580" Width="400">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closed">
+            <command:EventToCommand Command="{Binding ClosedCommandAsync}"></command:EventToCommand>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Fluent:Ribbon Grid.Row="0" AreTabHeadersVisible="True" IsQuickAccessToolBarVisible="False"
+                       Grid.Column="0" CanMinimize="False">
+            <!--Tabs-->
+            <Fluent:RibbonTabItem Header="Home" IsSeparatorVisible="True">
+                <Fluent:RibbonGroupBox Header="个人">
+                    <Fluent:Button Command="{Binding OpenFolderCommand}" Width="50"
+                           Icon="/Images/exit.png"
+                           LargeIcon="/Images/exit.png" Header="退出" Cursor="Hand" Click="Button_Click_1">
+                    </Fluent:Button>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="操作">
+                    <Fluent:Button Command="{Binding OpenFolderCommand}" Width="50"
+                           Icon="/Images/exit.png"
+                           LargeIcon="/Images/huiqi.png" Header="悔棋" Cursor="Hand" Click="Button_Click_2">
+                    </Fluent:Button>
+                    <Fluent:Button Command="{Binding OpenFolderCommand}" Width="50"
+                           Icon="/Images/exit.png"
+                           LargeIcon="/Images/renshu.png" Header="认输" Click="Button_Click" Cursor="Hand">
+                    </Fluent:Button>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+        </Fluent:Ribbon>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <usercontrol:ChessControl  HorizontalAlignment="Left"  FontFamily="Verdana" Name="chesscontrol"
+                                           IsRedSelected ="{Binding Path=IsRedSelected,UpdateSourceTrigger=PropertyChanged,Mode=OneWay}"
+                                           IsBlueReady="{Binding Path=IsBlueReady, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" 
+                                           IsRedReady="{Binding Path=IsRedReady, Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"  
+                                           IsRedTurn="{Binding Path =IsRedTurn,Mode=OneWayToSource}"/>
+                
+            </Grid>
+        </Grid>
+    </Grid>
+</Fluent:RibbonWindow>
