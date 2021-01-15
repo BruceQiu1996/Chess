@@ -7,7 +7,7 @@ Chinese Chess of WPF
 Restore Solution
 
 # Step2
- (1) If u use my Server:Run Client is OK
+ (1) If u use my Server:Run Client is OK  
  (2) If u use your Server,Run server project and config server address in 'Const.cs' file in your client project
 
 # Step3
