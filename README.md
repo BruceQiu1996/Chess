@@ -11,4 +11,4 @@ Restore Solution
  (2) If u use your Server,Run server project and config server address in 'Const.cs' file in your client project
 
 # Step3
-Enjoy it and give me a star. thx.
+Enjoy it and give me a star. thank you.
